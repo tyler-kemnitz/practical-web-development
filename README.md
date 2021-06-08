@@ -4,22 +4,30 @@ This project creates a web application built using Docker, Django, Nginx, Redis 
 
 ## Starting MYSQL Container ###
 
-` $ docker run -d --name app-db --cpus 0.5 --memory 512m -e MYSQL_USER=tyler -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=web_app_db --net app-net --platform linux/x86_64 mysql:5.7 `
+```
+$ docker run -d --name app-db --cpus 0.5 --memory 512m -e MYSQL_USER=tyler -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=web_app_db --net app-net --platform linux/x86_64 mysql:5.7 
+```
 
 ### Apple Silicon Note  
 Received error when running the above command without the `--platform` arg and instead specifying `mysql:5.7`: 
 
-` docker: no matching manifest for linux/arm64/v8 in the manifest list entries. when running command w/ simple mysql:5.7 `
+``` 
+docker: no matching manifest for linux/arm64/v8 in the manifest list entries. when running command w/ simple mysql:5.7
+```
 
 Specifying the platform as shown in the command above absolves this error. Before running, the following command may be needed:
 
-` $ docker pull --platform linux/x86_64 mysql `
+``` 
+$ docker pull --platform linux/x86_64 mysql 
+```
 
 ## Starting Web App Container (Django)
 
 To create the container and run the web app:
 
-` $ docker run -itd --name web-app-1 -v $PWD:/code --cpus 0.5 --memory 512m -p 8080:8000 --workdir /code --net app-net -e DOCKER_CONTAINER_ID=1 python:3.8 `
+```
+$ docker run -itd --name web-app-1 -v $PWD:/code --cpus 0.5 --memory 512m -p 8080:8000 --workdir /code --net app-net -e DOCKER_CONTAINER_ID=1 python:3.8
+```
 
 ### Configuring DB via Django
 1. Run docker interactive shell for container: ` $ docker exec -it web-app-1 bash `
