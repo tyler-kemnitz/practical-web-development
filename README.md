@@ -1,7 +1,5 @@
 ## Practical Web Development | [Udemy Course](https://www.udemy.com/course/practical-web-development-with-docker-django-nginx-redis/)
 
-### TEST COMMIT FROM M!
-
 This project creates a web application built using Docker, Django, Nginx, Redis and Gunicorn.
 
 ## Starting MYSQL Container ###
